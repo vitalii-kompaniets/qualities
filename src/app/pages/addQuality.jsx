@@ -1,9 +1,15 @@
 import React from "react";
+import { useHistory } from "react-router";
 import QualityForm from "../components/ui/qualityForm";
+import { useQualities } from "../hooks/useQualities";
 const AddQualityPage = () => {
+  const history = useHistory();
+  const { addQuality } = useQualities();
   const handleSubmit = (data) => {
-    console.log(data);
-    // updateQuality(data);
+    addQuality(data).then((data) => {
+      if (data) history.push("/");
+      console.log(data);
+    });
   };
   return (
     <>
